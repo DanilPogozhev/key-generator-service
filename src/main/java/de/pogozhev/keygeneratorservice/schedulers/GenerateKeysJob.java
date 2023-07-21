@@ -19,7 +19,7 @@ public class GenerateKeysJob {
     }
 
 
-    @Scheduled(cron = "* */1 * * * *")
+    @Scheduled(cron = "0 * * * * *")
     public void execute() {
         Set<String> generatedKeys = new HashSet<>();
         while (generatedKeys.size() < 1_000) {

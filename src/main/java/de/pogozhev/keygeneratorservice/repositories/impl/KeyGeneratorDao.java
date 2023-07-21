@@ -16,11 +16,17 @@ public class KeyGeneratorDao implements KeyRepository {
 
     @Override
     public void save(String key) {
-        jdbcTemplate.update("INSERT INTO unique_keys (unique_key) VALUES (?)", ps -> ps.setString(1, key));
+        jdbcTemplate.update("INSERT INTO unique_keys (unique_key) VALUES (?)",
+                ps -> ps.setString(1, key)
+        );
     }
 
     @Override
     public void saveAll(Set<String> keys) {
-        jdbcTemplate.batchUpdate("INSERT INTO unique_keys (unique_key) VALUES (?)", keys, 100, ((ps, argument) -> ps.setString(1, argument)));
+        jdbcTemplate.batchUpdate("INSERT INTO unique_keys (unique_key) VALUES (?)",
+                keys,
+                100,
+                ((ps, argument) -> ps.setString(1, argument))
+        );
     }
 }
