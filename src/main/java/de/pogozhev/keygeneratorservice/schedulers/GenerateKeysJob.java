@@ -29,7 +29,10 @@ public class GenerateKeysJob {
         }
 
         List<String> alreadyStoredKeys = keyRepository.getAlreadyStoredKeys(generatedKeys);
-        alreadyStoredKeys.forEach(generatedKeys::remove);
+        if (!alreadyStoredKeys.isEmpty()) {
+            alreadyStoredKeys.forEach(generatedKeys::remove);
+        }
+
         keyRepository.saveAll(generatedKeys);
     }
 }
